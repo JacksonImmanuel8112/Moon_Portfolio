@@ -38,7 +38,7 @@ export const Nav = () => {
         return (
             <>
                 <div className={`w-full`} >
-                    <div className='bg-white rounded-full   fixed top-12 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                    <div className='z-100 bg-white rounded-full   fixed top-12 left-1/2 -translate-x-1/2 -translate-y-1/2'>
                         <ul className='flex gap-8 px-4 py-3'>
                             <a href="#home" onClick={() => setSelected('home')} className={`${selected == 'home' ? "font-bold text-green-600" : ""}`}><li>Home</li></a>
                             <a href="#skills" onClick={() => setSelected('skills')} className={`${selected == 'skills' ? "font-bold text-green-600" : ""}`}><li>Skills</li></a>
