@@ -15,7 +15,7 @@ const Skills = () => {
         skillTimeline.from('#skillset',{opacity : 0,y:100,duration : 1,ease :'power1.inOut'})
     },[])
     return (
-        <section className="jskills h-full bg-white p-3 sm:p-22">
+        <section id="skills" className="jskills h-full bg-white p-3 sm:p-22">
             {/* heading chip  */}
             <div className='rounded-full mb-4 items-center text-xs font-normal inline-flex px-2 py-1 cursor-pointer bg-black'>
                 <div className='text-white me-1  '>

@@ -15,7 +15,7 @@ export const Hero = () => {
         });
         heroTimeline.from('#desc-box', { opacity: 0, y: 100, ease: 'power1.inOut' })
 
-        gsap.from(heroSplit.chars, { ease: 'power1.inOut', stagger: 0.02, duration: 0.5, yPercent: 100 });
+        gsap.from(heroSplit.chars, { ease: 'power1.inOut', stagger: 0.1, duration: 0.5, yPercent: 100 });
         gsap.from(heroDesc.lines, { opacity: 0, duration: 0.5, stagger: 0.2, ease: 'power1.inOut', yPercent: 100 });
 
 

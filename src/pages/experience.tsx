@@ -31,7 +31,7 @@ export const Experience = () => {
                 start: 'top 70%'
             }
         });
-        
+
 
         const pastexpTimeline = gsap.timeline({
             scrollTrigger: {
@@ -40,18 +40,18 @@ export const Experience = () => {
             }
         });
 
-        expTimeline.from(headingSpilt.chars,{opacity : 0,x : 100,duration : .5,stagger : 0.02,ease : 'power2.inOut'});
-        expTimeline.from('.badge-exp',{opacity : 0,y:100,duration : 0.3,ease : 'power1.inOut'});
+        expTimeline.from(headingSpilt.chars, { opacity: 0, xPercent: 100, duration: .5, stagger: 0.02, ease: 'power2.inOut' });
+        expTimeline.from('.badge-exp', { opacity: 0, y: 100, duration: 0.3, ease: 'power1.inOut' });
 
-        presentexpTimeline.from('.left-grid',{opacity : 0,x : -100,duration : 0.5,ease : 'power1.inOut'})
-        presentexpTimeline.from('.right-grid',{opacity : 0,x : 100,duration : 0.8,ease : 'power1.inOut'})
+        presentexpTimeline.from('.left-grid', { opacity: 0, x: -100, duration: 0.5, ease: 'power1.inOut' })
+        presentexpTimeline.from('.right-grid', { opacity: 0, x: 100, duration: 0.8, ease: 'power1.inOut' })
 
-        subexpTimeline.from('.subexp1',{opacity : 0, y:100,duration : 0.4,ease : 'power1.inOut'});
-        subexpTimeline.from('.subexp2',{opacity : 0, y:100,duration : 0.6,ease : 'power1.inOut'});
-        subexpTimeline.from('.subexp3',{opacity : 0, y:100,duration : 0.8,ease : 'power1.inOut'});
+        subexpTimeline.from('.subexp1', { opacity: 0, y: 100, duration: 0.4, ease: 'power1.inOut' });
+        subexpTimeline.from('.subexp2', { opacity: 0, y: 100, duration: 0.6, ease: 'power1.inOut' });
+        subexpTimeline.from('.subexp3', { opacity: 0, y: 100, duration: 0.8, ease: 'power1.inOut' });
 
-        pastexpTimeline.from('.pastleft-grid',{opacity : 0,x : 100,duration : 0.5,ease : 'power1.inOut'})
-        pastexpTimeline.from('.pastright-grid',{opacity : 0,x : -100,duration : 0.8,ease : 'power1.inOut'})
+        pastexpTimeline.from('.pastleft-grid', { opacity: 0, x: 100, duration: 0.5, ease: 'power1.inOut' })
+        pastexpTimeline.from('.pastright-grid', { opacity: 0, x: -100, duration: 0.8, ease: 'power1.inOut' })
 
 
     }, []);
@@ -84,14 +84,17 @@ export const Experience = () => {
                 </div>
             </div>
             {/* myWorkAtCareworx */}
-            <div className="workatcare grid grid-cols-1 mb-12 sm:grid-cols-3">
-                {myWorkAtCareworx.map((item,i) => {
+            <div className="workatcare grid grid-cols-1 mb-12 sm:grid-cols-3 justify-center ">
+                {myWorkAtCareworx.map((item, i) => {
                     return (
-                        <div className={`subexp${i}`}>
-                            <div className="border inline-flex mb-1 bg-green-100 border-green-600 rounded-md py-4 px-4">{item.emoji}</div>
-                            <div className="text-md font-medium mb-2">{item.heading}</div>
+                        <div className={`subexp${i} flex flex-col items-center justify-center mb-4 sm:items-start`}>
+                            <div className="border flex justify-center items-center mb-1 bg-green-100 border-green-600 rounded-md py-4 px-4">
+                                {item.emoji}
+                            </div>
+                            <div className="text-md font-medium mb-2 text-center">{item.heading}</div>
                             <div className="text-justify w-58 text-sm">{item.brief}</div>
                         </div>
+
                     )
                 })
 
