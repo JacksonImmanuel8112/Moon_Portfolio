@@ -80,7 +80,7 @@ export const Experience = () => {
                         Collaborate closely with cross-functional teams to deliver high-quality features in agile development cycles.</div>
                 </div>
                 <div className="right-grid col-span-2">
-                    <img src={rightimg} alt="" />
+                    <img src={rightimg} alt="Right Img" />
                 </div>
             </div>
             {/* myWorkAtCareworx */}
