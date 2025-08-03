@@ -45,7 +45,7 @@ export const Projects = () => {
                     <img className="rounded-t-md" src={comingsoon} alt="" />
                     <div className="bg-white px-1 py-2 rounded-b-md text-md font-semibold">
                         <div>Working On it!😉</div>
-                        <div className=" hover:underline text-green-600 text-sm font-normal ">See Project {'>>'}</div>
+                        <div className=" hover:underline text-green-600 text-sm font-normal ">See Project Soon {'>>'}</div>
                     </div>
                 </div>
 

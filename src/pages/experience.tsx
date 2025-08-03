@@ -87,12 +87,12 @@ export const Experience = () => {
             <div className="workatcare grid grid-cols-1 mb-12 sm:grid-cols-3 justify-center ">
                 {myWorkAtCareworx.map((item, i) => {
                     return (
-                        <div className={`subexp${i} flex flex-col items-center justify-center mb-4 sm:items-start`}>
+                        <div key={i} className={`subexp${i} flex flex-col items-center justify-center mb-4 sm:items-start`}>
                             <div className="border flex justify-center items-center mb-1 bg-green-100 border-green-600 rounded-md py-4 px-4">
                                 {item.emoji}
                             </div>
-                            <div className="text-md font-medium mb-2 text-center">{item.heading}</div>
-                            <div className="text-justify w-58 text-sm">{item.brief}</div>
+                            <div className="text-lg font-medium mb-2 text-center">{item.heading}</div>
+                            <div className="text-justify tracking-wide sm:w-58  text-sm">{item.brief}</div>
                         </div>
 
                     )

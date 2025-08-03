@@ -22,7 +22,7 @@ export const Hero = () => {
     }, [])
     return (
         <>
-            <section id='home' className='bg-moon h-screen '>
+            <section id='home' className='bg-moon sm:h-screen h-full pb-20 sm:pb-0  '>
                 <div className="content p-4 pt-22 sm:p-22 sm:pt-30">
                     <div className='badge' >
                         Creative Front End Developer
