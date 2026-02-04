@@ -1,55 +1,87 @@
-import foodproject from "../assets/foodproject.jpg"
-import comingsoon from "../assets/comingsoon.jpg"
-import { useGSAP } from "@gsap/react"
-import gsap from "gsap"
-import { SplitText } from "gsap/all"
+import foodproject from '../assets/foodproject.jpg'
+import comingsoon from '../assets/comingsoon.jpg'
+
+const projects = [
+  {
+    title: 'Food Order Online',
+    description:
+      'Responsive ordering experience with modern UI patterns and clear, friendly flows.',
+    image: foodproject,
+    link: 'https://famous-raindrop-db0b2f.netlify.app/',
+    status: 'Live',
+    cta: 'View case',
+  },
+  {
+    title: 'Next Project',
+    description:
+      'In progress. The pixels are behaving, the API is cooperating, and the coffee is working.',
+    image: comingsoon,
+    link: '',
+    status: 'Coming soon',
+    cta: 'Preview soon',
+  },
+]
 
 export const Projects = () => {
-    useGSAP(() => {
-        const headingSpilt = SplitText.create('.projecttext', { type: 'chars,words' });
-
-        const projectTimeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: '#project',
-                start: 'top 60%'
-            }
-        });
-        projectTimeline.from(headingSpilt.chars, { opacity: 0, xPercent: 100, duration: .5, stagger: 0.02, ease: 'power2.inOut' });
-        projectTimeline.from('.badge-project', { opacity: 0, y: 100, duration: 0.3, ease: 'power1.inOut' });
-        projectTimeline.from('.project1', { opacity: 0, duration: 1, ease: 'power1.inOut', y: 100 });
-        projectTimeline.from('.project2', { opacity: 0, duration: 1.5, ease: 'power1.inOut', y: 100 });
-    }, [])
-    return (
-        <section id="project" className="projects-bg p-3 sm:p-22">
-            {/* heading chip  */}
-            <div className="flex justify-start">
-                <div className='badge-project rounded-full mb-2 text-xs font-normal inline-flex px-2 py-1 cursor-pointer bg-white'>
-
-                    <div className='text-black me-1'>
-                        🔭  My Projects
-                    </div>
+  return (
+    <section id="project" className="section">
+      <div className="container space-y-8">
+        <div className="space-y-4">
+          <div className="eyebrow" data-reveal>
+            Projects
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-display" data-reveal>
+            High-contrast work with calm, confident motion.
+          </h2>
+          <p className="text-[var(--muted)] max-w-2xl" data-reveal>
+            A few builds that prove I do not just talk about quality. I ship it.
+          </p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {projects.map((project) => {
+            const card = (
+              <div className="project-card">
+                <div className="project-media">
+                  <img src={project.image} alt={project.title} />
+                  <div className="project-overlay" />
                 </div>
-            </div>
-            <div className="projecttext text-xl font-medium text-white mb-4">Crafted Real-World Projects with Modern Tech</div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href="https://famous-raindrop-db0b2f.netlify.app/" target="_blank" className="decoration-0">
-                    <div className="project1 rounded-md cursor-pointer">
-                        <img className="rounded-t-md" src={foodproject} alt="" />
-                        <div className="bg-white px-1 py-2 rounded-b-md text-md font-semibold">
-                            <div>Food Order Online Project</div>
-                            <div className=" hover:underline text-green-600 text-sm font-normal ">See Project {'>>'}</div>
-                        </div>
-                    </div>
+                <div className="project-body">
+                  <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+                    <span>{project.status}</span>
+                    <span>Featured</span>
+                  </div>
+                  <h3 className="text-xl font-display">{project.title}</h3>
+                  <p className="text-[var(--muted)] text-sm leading-relaxed">
+                    {project.description}
+                  </p>
+                  <span className="project-link">{project.cta}</span>
+                </div>
+              </div>
+            )
+
+            if (project.link) {
+              return (
+                <a
+                  key={project.title}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-wrap"
+                  data-reveal
+                >
+                  {card}
                 </a>
-                <div className="project2 rounded-md cursor-pointer">
-                    <img className="rounded-t-md" src={comingsoon} alt="" />
-                    <div className="bg-white px-1 py-2 rounded-b-md text-md font-semibold">
-                        <div>Working On it!😉</div>
-                        <div className=" hover:underline text-green-600 text-sm font-normal ">See Project Soon {'>>'}</div>
-                    </div>
-                </div>
+              )
+            }
 
-            </div>
-        </section>
-    )
+            return (
+              <div key={project.title} className="project-wrap" data-reveal>
+                {card}
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
 }

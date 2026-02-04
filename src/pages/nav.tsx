@@ -1,54 +1,75 @@
-import { useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import { useState } from 'react'
 
-export const Nav = () => {
-    const [isOpen, setIsOpen] = useState('hidden');
-    const [selected, setSelected] = useState('home')
-    const isMobile = useMediaQuery({ maxWidth: 767 })
+type NavProps = {
+  theme: 'dark' | 'light'
+  onToggle: () => void
+}
 
-    const closeMobileMenu = () => {
-        setIsOpen(isOpen == 'visible' ? 'hidden' : 'visible')
+const links = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'project', label: 'Projects' },
+  { id: 'exp', label: 'Experience' },
+  { id: 'contact', label: 'Contact' },
+]
 
-    }
-    if (isMobile) {
-        return (
-            <>
-                {isOpen !== 'visible' &&
-                    (<div className='absolute right-5 top-3'>
-                        <div onClick={() => closeMobileMenu()} className='bg-white p-3 rounded-full' >
-                            <i className="fa-solid fa-bars"></i>
-                        </div>
-                    </div>)
-                }
-                <div className={`w-full ${isOpen}`} >
-                    <div className='bg-white  fixed top-0 bottom-0 h-full z-40  w-[70%]'>
-                        <ul className='flex flex-col gap-6 p-4'>
-                            <li className='self-end' onClick={() => closeMobileMenu()}>X</li>
-                            <a href="#home" onClick={() => setSelected('home')} className={`${selected == 'home' ? "font-bold text-green-600" : ""}`}><li>Home</li></a>
-                            <a href="#skills" onClick={() => setSelected('skills')} className={`${selected == 'skills' ? "font-bold text-green-600" : ""}`}><li>Skills</li></a>
-                            <a href="#exp" onClick={() => setSelected('exp')} className={`${selected == 'exp' ? "font-bold text-green-600" : ""}`}><li>Experience</li></a>
-                            <a href="#project" onClick={() => setSelected('project')} className={`${selected == 'project' ? "font-bold text-green-600" : ""}`}><li>Project</li></a>
-                            <a href="#contact" onClick={() => setSelected('contact')} className={`${selected == 'contact' ? "font-bold text-green-600" : ""}`}><li>Contact</li></a>
-                        </ul>
-                    </div>
-                </div>
-            </>
-        )
-    } else {
-        return (
-            <>
-                <div className={`w-full`} >
-                    <div className='z-100 bg-white rounded-full   fixed top-12 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-                        <ul className='flex gap-8 px-4 py-3'>
-                            <a href="#home" onClick={() => setSelected('home')} className={`${selected == 'home' ? "font-bold text-green-600" : ""}`}><li>Home</li></a>
-                            <a href="#skills" onClick={() => setSelected('skills')} className={`${selected == 'skills' ? "font-bold text-green-600" : ""}`}><li>Skills</li></a>
-                            <a href="#exp" onClick={() => setSelected('exp')} className={`${selected == 'exp' ? "font-bold text-green-600" : ""}`}><li>Experience</li></a>
-                            <a href="#project" onClick={() => setSelected('project')} className={`${selected == 'project' ? "font-bold text-green-600" : ""}`}><li>Project</li></a>
-                            <a href="#contact" onClick={() => setSelected('contact')} className={`${selected == 'contact' ? "font-bold text-green-600" : ""}`}><li>Contact</li></a>
-                        </ul>
-                    </div>
-                </div>
-            </>
-        );
-    }
+export const Nav = ({ theme, onToggle }: NavProps) => {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50">
+      <div className="container">
+        <div className="nav-shell">
+          <a href="#home" className="logo">
+            Jackson Immanuel S
+          </a>
+          <nav className="hidden md:flex items-center gap-6 text-sm">
+            {links.map((link) => (
+              <a key={link.id} className="nav-link" href={`#${link.id}`}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-3">
+            <button
+              className="theme-toggle"
+              onClick={onToggle}
+              aria-label="Toggle theme"
+              aria-pressed={theme === 'dark'}
+            >
+              <span className={`toggle-icon ${theme === 'dark' ? 'is-dark' : 'is-light'}`}>
+                <i className="fa-solid fa-sun" aria-hidden="true" />
+                <i className="fa-solid fa-moon" aria-hidden="true" />
+              </span>
+            </button>
+            <button
+              className="md:hidden nav-burger"
+              onClick={() => setOpen((prev) => !prev)}
+              aria-label="Toggle navigation"
+              aria-expanded={open}
+            >
+              <i className="fa-solid fa-bars" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+        {open && (
+          <div className="md:hidden mt-3 card" data-reveal>
+            <div className="flex flex-col gap-3 text-sm">
+              {links.map((link) => (
+                <a
+                  key={link.id}
+                  className="nav-link"
+                  href={`#${link.id}`}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </header>
+  )
 }

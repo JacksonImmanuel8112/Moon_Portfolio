@@ -1,65 +1,79 @@
 import { useGSAP } from '@gsap/react'
-import { SplitText } from "gsap/all";
+import { SplitText } from 'gsap/SplitText'
 import gsap from 'gsap'
 
 export const Hero = () => {
-    useGSAP(() => {
-        const heroSplit = SplitText.create('.hero-header', { type: 'chars,words' });
-        const heroDesc = SplitText.create('#hero-desc', { type: 'lines' })
+  useGSAP(() => {
+    const heroSplit = SplitText.create('.hero-title', { type: 'chars,words' })
 
-        const heroTimeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: '#home',
-                start: 'bottom bottom'
-            }
-        });
-        heroTimeline.from('#desc-box', { opacity: 0, y: 100, ease: 'power1.inOut' })
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#home',
+        start: 'top 80%',
+        toggleActions: 'restart none none reset',
+      },
+    })
 
-        gsap.from(heroSplit.chars, { ease: 'power1.inOut', stagger: 0.1, duration: 0.5, yPercent: 100 });
-        gsap.from(heroDesc.lines, { opacity: 0, duration: 0.5, stagger: 0.2, ease: 'power1.inOut', yPercent: 100 });
+    tl.from(heroSplit.chars, {
+      ease: 'power3.out',
+      stagger: 0.05,
+      duration: 0.6,
+      yPercent: 120,
+      opacity: 0,
+    })
+      .from('.hero-sub', { opacity: 0, y: 16, duration: 0.6 }, '-=0.2')
+      .from('.hero-cta', { opacity: 0, y: 16, duration: 0.6 }, '-=0.2')
 
+    return () => {
+      heroSplit.revert()
+      tl.kill()
+    }
+  }, [])
 
-    }, [])
-    return (
-        <>
-            <section id='home' className='bg-moon sm:h-screen h-full pb-20 sm:pb-0  '>
-                <div className="content p-4 pt-22 sm:p-22 sm:pt-30">
-                    <div className='badge' >
-                        Creative Front End Developer
-                    </div>
-                    <div className='hero-header text-white text-5xl sm:text-8xl font-bold italic text-gradient'>
-                        Jackson <br /> Immanuel S
-                    </div>
-                    <p id='hero-desc' className=' text-white sm:text-lg text-sm text-justify max-w-[800px]'>
-                        Front-end Developer with hands-on experience in building responsive web applications using React and Angular.
-                        Skilled in crafting dynamic user interfaces and ensuring seamless user experiences across devices.
-                        Proficient in integrating front-end components with backend data using SQL for efficient data handling.
-                    </p>
-                    <button className='rounded-md bg-green-600 mt-3 hover:bg-green-800 text-white py-1 px-4 cursor-pointer'>🚀 Contact Me</button>
-                </div>
-            </section>
-            <div id='desc-container' className='h-full pb-12 px-3 pt-14  sm:px-19 bg-black'>
-                <div className='bg-white text-white'>hi</div>
-                <div id='desc-box' className='min-h-36 -mt-24 rounded-md p-3 sm:py-6 bg-white'>
-                    <div>
-                        <div className='rounded-full mb-2 items-center text-xs font-normal inline-flex px-2 py-1 cursor-pointer bg-black'>
-                            <div className='text-white me-1 '>
-                                👨🏻‍🔬  About Me
-                            </div>
-
-                        </div>
-                        <div className='text-xl sm:text-2xl font-medium'>
-                            Passionate <span className='text-green-600'> Front-End Developer </span>
-                        </div>
-                    </div>
-
-                    <div className='leading-5 text-justify'>
-                        I'm a dedicated front-end developer with expertise in building responsive and dynamic web applications using modern JavaScript frameworks. My focus is on creating intuitive user interfaces and delivering exceptional user experiences.
-                        Currently pursuing my MCA at University of Madras, I continue to expand my knowledge in software development while applying my skills in real-world projects.
-                        I'm passionate about clean code, responsive design, and staying up-to-date with the latest web technologies and best practices.
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+  return (
+    <section id="home" className="section pt-32 sm:pt-40">
+      <div className="container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
+        <div className="space-y-6">
+          <div className="eyebrow hero-sub">Front-End Developer</div>
+          <h1 className="hero-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display leading-[1.02]">
+            I build things that do not break on the first click.
+          </h1>
+          <p className="hero-sub text-[var(--muted)] text-lg sm:text-xl leading-relaxed max-w-2xl">
+            Jackson Immanuel S. I turn caffeine into clean code and ship interfaces
+            that feel expensive. Yes, it works. No, I did not copy it from Stack
+            Overflow (much).
+          </p>
+          <div className="hero-cta flex flex-wrap gap-3">
+            <a className="btn btn-primary" href="#project">
+              View Projects
+            </a>
+            <a className="btn btn-ghost" href="#contact">
+              Contact Me
+            </a>
+          </div>
+        </div>
+        <div className="hero-card card card-hero glow-border" data-reveal>
+          <div className="card-title">Highlights</div>
+          <ul className="space-y-4 text-sm text-[var(--muted)]">
+            <li>
+              <span className="text-[var(--text)] font-semibold">Current:</span>{' '}
+              Angular Developer at Careworx Pvt Ltd.
+            </li>
+            <li>
+              <span className="text-[var(--text)] font-semibold">Previously:</span>{' '}
+              React JS Developer at Pikture Associates Pvt Ltd.
+            </li>
+            <li>
+              <span className="text-[var(--text)] font-semibold">Studying:</span>{' '}
+              MCA at the University of Madras.
+            </li>
+            <li>
+              <span className="text-[var(--text)] font-semibold">New skill:</span>{' '}
+              ASP.NET Web API + MSSQL for API development.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  )
 }
