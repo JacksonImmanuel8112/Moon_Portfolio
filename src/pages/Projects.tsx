@@ -1,4 +1,4 @@
-import foodproject from '../assets/foodproject.jpg'
+// import foodproject from '../assets/foodproject.jpg'
 import urlshort from '../assets/urlshort.png'
 import comingsoon from '../assets/comingsoon.jpg'
 
