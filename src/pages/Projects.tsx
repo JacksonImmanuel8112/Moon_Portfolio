@@ -1,13 +1,15 @@
 import foodproject from '../assets/foodproject.jpg'
+import urlshort from '../assets/urlshort.png'
 import comingsoon from '../assets/comingsoon.jpg'
 
 const projects = [
   {
-    title: 'Food Order Online',
+    title: 'URL Shortener',
     description:
-      'Responsive ordering experience with modern UI patterns and clear, friendly flows.',
-    image: foodproject,
-    link: 'https://famous-raindrop-db0b2f.netlify.app/',
+      'A simple and efficient URL shortening service built with Angular and .Net API with PostgreSQL.',
+    image: urlshort,
+    // link: 'https://famous-raindrop-db0b2f.netlify.app/',
+    link: 'https://url-shorteners-asp.netlify.app/',
     status: 'Live',
     cta: 'View case',
   },
